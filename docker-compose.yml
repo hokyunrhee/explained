@@ -1,0 +1,27 @@
+services:
+  elasticmq:
+    image: softwaremill/elasticmq-native
+    ports:
+      - "127.0.0.1:9324:9324"
+      - "127.0.0.1:9325:9325"
+    volumes:
+      - ./config/elasticmq.conf:/opt/elasticmq.conf
+
+  db:
+    image: postgres:18
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_USER: explained
+      POSTGRES_PASSWORD: explained
+      POSTGRES_DB: explained_development
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U explained"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
