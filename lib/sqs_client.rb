@@ -2,13 +2,13 @@
 module SqsClient
   def self.build
     options = {
-      region: ENV.fetch("AWS_REGION", "us-east-1"),
+      region: ENV.fetch("AWS_REGION", "ap-northeast-2"),
       access_key_id: ENV.fetch("AWS_ACCESS_KEY_ID", "test"),
       secret_access_key: ENV.fetch("AWS_SECRET_ACCESS_KEY", "test")
     }
 
-    if ENV["SQS_ENDPOINT"].present?
-      options[:endpoint] = ENV["SQS_ENDPOINT"]
+    if ENV.fetch("SQS_ENDPOINT", "http://localhost:9324").present? && !Rails.env.production?
+      options[:endpoint] = ENV.fetch("SQS_ENDPOINT", "http://localhost:9324")
       options[:verify_checksums] = false
     end
 
