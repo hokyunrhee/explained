@@ -1,0 +1,6 @@
+# config/shoryuken.yml
+# NOTE: Shoryuken YAML은 ERB를 지원하지 않음. concurrency는 CLI -c 플래그 또는 여기서 직접 지정.
+concurrency: 5
+
+queues:
+  - explained-default
