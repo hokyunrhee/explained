@@ -14,7 +14,7 @@ namespace :sqs do
         battery_soc_pct: rand(0.0..100.0).round(1),
         battery_voltage: rand(320.0..400.0).round(1),
         motor_power_kw: rand(0.0..150.0).round(1),
-        regen_active: [true, false].sample,
+        regen_active: [ true, false ].sample,
         odometer_km: rand(1000.0..50000.0).round(1)
       }
     }
